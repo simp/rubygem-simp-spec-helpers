@@ -1,0 +1,7 @@
+*.gem
+*.swp
+Gemfile.lock
+.bundle/
+*.old
+.vagrant
+/log
