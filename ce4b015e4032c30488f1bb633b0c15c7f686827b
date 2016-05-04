@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_32835f06",
+        "filename": "lib/simp/spec/rubygem.rb",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2016-05-04T20:59:23Z",
+      "side": 1,
+      "message": "Was this class a placeholder for something else?  \n\nIt isn\u0027t spec-related and duplicates https://github.com/simp/rubygem-simp-rake-helpers/blob/master/lib/simp/rake/rubygem.rb",
+      "revId": "ce4b015e4032c30488f1bb633b0c15c7f686827b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
