@@ -12,16 +12,15 @@ Gem::Specification.new do |s|
   EOF
   s.version     = Simp::SpecHelpers::VERSION
   s.license     = 'Apache-2.0'
-  s.authors     = ['Chris Tessmer','Trevor Vaughan']
+  s.authors     = ['SIMP Team']
   s.email       = 'simp@simp-project.org'
   s.homepage    = 'https://github.com/simp/rubygem-simp-spec-helpers'
   s.metadata = {
                  'issue_tracker' => 'https://simp-project.atlassian.net'
                }
-
-  #  s.add_runtime_dependency 'net-telnet', '~> 0.1.1'
-
-  ### s.files = Dir['Rakefile', '{bin,lib,spec}/**/*', 'README*', 'LICENSE*'] & `git ls-files -z .`.split("\0")
+  s.add_development_dependency  'puppetlabs_spec_helper', '~> 0'
+  s.add_development_dependency  'puppet',                 '>= 5.5'
+  s.add_development_dependency  'rspec',                  '~> 3.2'
   s.files       = `git ls-files`.split("\n")
   s.test_files  = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }

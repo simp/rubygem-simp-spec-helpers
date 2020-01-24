@@ -1,0 +1,36 @@
+---
+language: ruby
+cache: bundler
+sudo: false
+before_install:
+  - rm Gemfile.lock || true
+bundler_args: "--without development --path .vendor"
+notifications:
+  email: false
+rvm:
+  - 2.4.5
+env:
+  - SIMP_SKIP_NON_SIMPOS_TESTS=1
+script:
+  - bundle exec rake spec
+before_deploy:
+  - bundle exec rake clobber
+  - "export GEM_VERSION=`ruby -r ./lib/simp/spec_helpers/version.rb -e 'puts Simp::SpecHelpers::VERSION'`"
+  - '[[ $TRAVIS_TAG =~ ^${GEM_VERSION}$ ]]'
+deploy:
+  - provider: rubygems
+    gemspec: simp-spec-helpers.gemspec
+    gem: simp-spec-helpers
+    api_key:
+      secure: "need key"
+    on:
+      tags: true
+      rvm: 2.4.5
+      condition: "($SKIP_PUBLISH != true)"
+  - provider: releases
+    api_key:
+      secure: "need key"
+    on:
+      tags: true
+      rvm: 2.4.5
+      condition: "($SKIP_PUBLISH != true)"
