@@ -10,6 +10,8 @@ gem_sources.each { |gem_source| source gem_source }
 gemspec
 
 gem 'puppet', puppetversion, :require => false
+gem 'bundler'
+gem 'rake'
 
 if facterversion = ENV['FACTER_GEM_VERSION']
   gem 'facter', facterversion, :require => false
@@ -18,5 +20,8 @@ end
 group :test do
   gem 'rspec'
   gem 'puppetlabs_spec_helper'
+  gem 'rubocop'
+  gem 'rubocop-rspec'
+
 end
 

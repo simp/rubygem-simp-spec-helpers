@@ -2,7 +2,6 @@ require 'rake'
 require 'rake/clean'
 require 'rake/tasklib'
 require 'fileutils'
-require 'puppetlabs_spec_helper/tasks/beaker'
 
 module Simp; end
 module Simp::Rake
