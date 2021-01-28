@@ -8,6 +8,7 @@ module Simp; end
 module Simp::Rake
   class Spec < ::Rake::TaskLib
     def initialize(base_dir)
+      super()
 
       @base_dir   = base_dir
       @clean_list = []
