@@ -1,0 +1,29 @@
+---
+stages:
+  - 'validation'
+
+image: ruby:2.5
+
+variables:
+  # Force dependencies into a path the gitlab-runner user can write to.
+  # (This avoids some failures on Runners with misconfigured ruby environments.)
+  GEM_HOME:          .vendor/gem_install
+
+cache:
+  untracked: true
+  key: '${CI_PROJECT_NAMESPACE}_ruby2.5_gem_install'
+  paths:
+    - '.vendor'
+
+rubocop:
+  stage: 'validation'
+  tags: ['docker']
+  script:
+    - echo -e "\e[0Ksection_start:`date +%s`:gem_env_and_contents[collapsed=true]\r\e[0KGem install and environment checks"
+    - 'gem install --conservative --minimal-deps --no-document rubocop'
+    - 'gem_bin="$(gem env | grep ''EXECUTABLE DIRECTORY'' | awk -F'': '' ''{print $2}'')"'
+    - "export PATH=\"$PATH:$gem_bin\""
+    - echo -e "\e[0Ksection_end:`date +%s`:gem_env_and_contents\r\e[0K"
+    - 'rubocop --version'
+    - 'rubocop --fail-level warning --display-only-fail-level-offenses .'
+  allow_failure: true
